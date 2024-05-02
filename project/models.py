@@ -20,6 +20,8 @@ class Account(Base):
 class Asset(Base):
     __tablename__ = "assets"
     id = Column(Integer, primary_key=True, index=True)
-    account_id = Column(Integer, ForeignKey("accounts.id"))
+    account_id = Column(Integer, ForeignKey("accounts.id"))  # Foreign key to link to the accounts table
     symbol = Column(String)
     quantity = Column(Float)
+
+    account = relationship("Account", back_populates="assets")  # Define the relationship to the Account model
